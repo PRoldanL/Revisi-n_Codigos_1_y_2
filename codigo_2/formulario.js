@@ -1,15 +1,20 @@
-// Obtener el formulario y asignar una función al evento submit
+//Calificaciones:
+
+//Cindy Rejón Hernández (4/5) "Competente"
+//Jesús Emiliano Madrigal Gonzále (4/5) "Competente"
+//Pedro Antonio Roldán Linares (4/5) "Competente"
+
+
+// Obteniendo el formulario y asignando una función al evento submit
 var formulario = document.querySelector(".formulario");
 formulario.onsubmit = function(e) {
-  // Prevenir la recarga de la página al enviar el formulario
   e.preventDefault();
 
-  // Obtener elementos del formulario
+  // Elementos del formulario
   var nombreElemento = formulario.elements[0];
   var edadElemento = formulario.elements[1];
   var nacionalidadElemento = formulario.elements[2];
 
-  // Obtener valores del formulario
   var nombre = nombreElemento.value;
   var edad = edadElemento.value;
   var indiceNacionalidad = nacionalidadElemento.selectedIndex;
@@ -18,7 +23,7 @@ formulario.onsubmit = function(e) {
   console.log(nombre, edad);
   console.log(nacionalidad);
 
-  // Validar y agregar invitado si cumple con los requisitos
+  // Validación y agregado de invitados al cumplir con las condiciones
   if (nombre.length === 0) {
     nombreElemento.classList.add("error");
   }
@@ -34,11 +39,9 @@ formulario.onsubmit = function(e) {
   }
 };
 
-
-
-// Función para agregar invitado a la lista
+// Función agrega invitado
 function agregarInvitado(nombre, edad, nacionalidad) {
-  // Mapear códigos de nacionalidad a nombres de países
+  
   var nacionalidadMap = {
     ar: "Argentina",
     mx: "Mexicana",
@@ -46,15 +49,13 @@ function agregarInvitado(nombre, edad, nacionalidad) {
     per: "Peruana"
   };
 
-  // Crear contenedor de lista de invitados
+  // Contenedor de lista de invitados
   var lista = document.getElementById("lista-de-invitados");
 
-  // Crear elemento de lista
   var elementoLista = document.createElement("div");
   elementoLista.classList.add("elemento-lista");
   lista.appendChild(elementoLista);
 
-  // Función para crear elementos de nombre, edad y nacionalidad
   function crearElemento(descripcion, valor) {
     var spanNombre = document.createElement("span");
     var inputNombre = document.createElement("input");
@@ -66,12 +67,11 @@ function agregarInvitado(nombre, edad, nacionalidad) {
     elementoLista.appendChild(espacio);
   }
 
-  // Crear elementos para nombre, edad y nacionalidad
   crearElemento("Nombre", nombre);
   crearElemento("Edad", edad);
   crearElemento("Nacionalidad", nacionalidadMap[nacionalidad]);
 
-  // Crear botón para eliminar invitado dentro del elemento de lista
+  // Botón para eliminar invitado 
   var botonBorrar = document.createElement("button");
   botonBorrar.textContent = "Eliminar invitado";
   botonBorrar.id = "boton-borrar";
@@ -79,7 +79,7 @@ function agregarInvitado(nombre, edad, nacionalidad) {
   elementoLista.appendChild(corteLinea);
   elementoLista.appendChild(botonBorrar);
 
-  // Asignar función al botón para eliminar el invitado actual
+  // Función botón elimina el invitado actual
   botonBorrar.onclick = function() {
     elementoLista.remove();
   };
